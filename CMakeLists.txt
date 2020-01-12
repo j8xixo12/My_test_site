@@ -12,5 +12,5 @@ add_executable(My_test_site main.cpp)
 target_link_libraries (My_test_site ${CMAKE_THREAD_LIBS_INIT})
 
 target_include_directories(My_test_site PUBLIC
-                           "${PROJECT_SOURCE_DIR}"
+                           "${PROJECT_SOURCE_DIR}/include"
                            )
