@@ -5,8 +5,8 @@
  * Author : Chun-Hsu Lai
  */
 
-#ifndef SINGLETON_HPP
-#define SINGLETON_HPP
+#ifndef SINGLETON_HPP_
+#define SINGLETON_HPP_
 
 template<class T>
 class Singleton {
@@ -27,4 +27,4 @@ class Singleton {
 
 };
 
-#endif
+#endif // SINGLETON_HPP_
