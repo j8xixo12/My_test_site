@@ -1,9 +1,8 @@
-/*
- * subscriber.hpp
- * 
- * Author: Chun-Hsu Lai
- * Create on: 2020/01/12
- */
+/// \file subscriber.hpp
+/// 
+/// \author Chun-Hsu Lai
+///
+/// \date 2020/01/12
 
 #ifndef SUBSCRIBER_HPP_
 #define SUBSCRIBER_HPP_

@@ -1,9 +1,8 @@
-/*
- * publisher.hpp
- * 
- * Author: Chun-Hsu Lai
- * Create on: 2020/01/12
- */
+/// \file publisher.hpp
+///
+/// \author Chun-Hsu Lai
+///
+/// \date 2020/01/12
 
 #ifndef PUBLISHER_HPP_
 #define PUBLISHER_HPP_

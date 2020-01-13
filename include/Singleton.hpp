@@ -1,9 +1,8 @@
-/*
- * Singleton.hpp
- * 
- * Created on : 2020/01/08
- * Author : Chun-Hsu Lai
- */
+/// \file Singleton.hpp
+///
+/// \date 2020/01/08
+///
+/// \author Chun-Hsu Lai
 
 #ifndef SINGLETON_HPP_
 #define SINGLETON_HPP_
