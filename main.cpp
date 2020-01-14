@@ -2,6 +2,9 @@
 #include <thread>
 #include <mutex>
 #include "singleton.hpp"
+#include "publisher.hpp"
+#include "subscriber.hpp"
+#include "topic.hpp"
 
 class Num : public Singleton<Num> {
 	public:
