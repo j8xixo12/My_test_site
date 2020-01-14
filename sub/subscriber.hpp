@@ -9,13 +9,15 @@
 
 #include "publisher.hpp"
 #include <vector>
+#include <boost/shared_ptr.hpp>
 
-class Subscriber {
+class Subscriber : public boost::enable_shared_from_this<Subscriber> {
     public:
-        Subscriber();
+        Subscriber(std::string _topic) { this->topic_ = _topic; }
         void update(Publisher *_pub, std::string _msg);
 
     private:
+        std::string topic_;
         std::vector<std::string> message_queue_;
 };
 
