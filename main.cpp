@@ -1,7 +1,7 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
-#include "Singleton.hpp"
+#include "singleton.hpp"
 
 class Num : public Singleton<Num> {
 	public:
