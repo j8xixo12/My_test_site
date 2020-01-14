@@ -11,20 +11,32 @@
 #include "publisher.hpp"
 #include "subscriber.hpp"
 #include <boost/shared_ptr.hpp>
-#include "Singleton.hpp"
-#include "type_def.hpp"
+#include <boost/make_shared.hpp>
+#include "singleton.hpp"
+
+class Subscriber;
+class Publisher;
+typedef boost::shared_ptr<Publisher> PublisherPtr;
+typedef boost::shared_ptr<Subscriber> SubscriberPtr;
 
 class Topic : public Singleton<Topic> {
     public:
         PublisherPtr RegistPublisher(std::string _topic) {
-            PublisherPtr pub = Publisher(_topic);
+            PublisherPtr pub = boost::make_shared<Publisher>(_topic);
             Publisher_Map.insert(std::pair<std::string,PublisherPtr>(_topic, pub));
             return pub;
         }
         SubscriberPtr RegistSubscriber(std::string _topic) {
-            SubscriberPtr sub = Subscriber(_topic);
+            SubscriberPtr sub = boost::make_shared<Subscriber>(_topic);
             Subscriber_Map.insert(std::pair<std::string,SubscriberPtr>(_topic, sub));
             return sub;
+        }
+
+        bool notify(const std::string _topic) {
+            auto sub_it = Subscriber_Map.find(_topic);
+            auto pub_it = Publisher_Map.find(_topic);
+            sub_it->second->update(pub_it->second->GetMsg());
+            return true;
         }
         
     private:
