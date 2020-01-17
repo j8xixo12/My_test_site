@@ -14,10 +14,13 @@
 class Node {
     public:
         Node(): sub_ptr_(nullptr), pub_ptr_(nullptr) {};
-
+        void RegSubscriber(const std::string _topic);
+        void RegPublisher(const std::string _topic);
+        void Subscribe();
+        void Publish(const std::string _msg);
     private:
         SubscriberPtr sub_ptr_;
         PublisherPtr pub_ptr_;
-}
+};
 
 #endif // NODE_HPP_

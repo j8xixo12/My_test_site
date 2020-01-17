@@ -12,6 +12,9 @@ find_package(boost REQUIRED)
 add_subdirectory(pub)
 list(APPEND EXTRA_LIBS publisher)
 
+add_subdirectory(node)
+list(APPEND EXTRA_LIBS node)
+
 add_executable(My_test_site main.cpp)
 target_link_libraries (My_test_site ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${EXTRA_LIBS})
 
