@@ -5,27 +5,32 @@
 #include "publisher.hpp"
 #include "subscriber.hpp"
 #include "topic.hpp"
+#include "node.hpp"
 
-class Num : public Singleton<Num> {
-	public:
-		int GetNum() { return ++num; }
-	private:
-		Num(){ num = 0; }
-		int num;
-		~Num(){};
-		friend class Singleton<Num>;
-};
+// class Num : public Singleton<Num> {
+// 	public:
+// 		int GetNum() { return ++num; }
+// 	private:
+// 		Num(){ num = 0; }
+// 		int num;
+// 		~Num(){};
+// 		friend class Singleton<Num>;
+// };
 
 std::mutex TMutex;
 
-void ThreadTask() {
-	TMutex.lock();
-	std::cout << Num::Instance()->GetNum() << std::endl;
-	TMutex.unlock();
-	return ;
-}
+// void ThreadTask() {
+// 	TMutex.lock();
+// 	std::cout << Num::Instance()->GetNum() << std::endl;
+// 	TMutex.unlock();
+// 	return ;
+// }
 
 int main(int argc, char *argv[]) {
+	Node pub, sub;
+
+	pub.RegPublisher("\aaa");
+	sub.RegSubscriber("\aaa");
 
 	return 0;
 }

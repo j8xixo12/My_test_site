@@ -6,6 +6,7 @@
 
 #ifndef PUBLISHER_HPP_
 #define PUBLISHER_HPP_
+
 #include <string>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>

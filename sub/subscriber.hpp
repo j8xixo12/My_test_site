@@ -14,11 +14,12 @@
 class Subscriber : public boost::enable_shared_from_this<Subscriber> {
     public:
         Subscriber(std::string _topic) { this->topic_ = _topic; }
-        void update(const std::string msg_) { message_queue_.push_back(msg_); };
+        void update(const std::string _msg) { message_ = _msg; };
+        std::string GetMsg() { return message_; }
 
     private:
         std::string topic_;
-        std::vector<std::string> message_queue_;
+        std::string message_;
 };
 
 #endif // SUBSCRIBER_HPP_

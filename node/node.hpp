@@ -21,6 +21,9 @@ class Node {
     private:
         SubscriberPtr sub_ptr_;
         PublisherPtr pub_ptr_;
+        std::string sub_topic_;
+        std::string pub_topic_;
+        std::string mail_box_;
 };
 
 #endif // NODE_HPP_
