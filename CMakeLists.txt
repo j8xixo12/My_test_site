@@ -7,13 +7,13 @@ project(My_test_site)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(Threads REQUIRED)
-find_package(boost REQUIRED)
-
-add_subdirectory(pub)
-list(APPEND EXTRA_LIBS publisher)
+find_package(Boost REQUIRED)
 
 add_subdirectory(node)
 list(APPEND EXTRA_LIBS node)
+
+add_subdirectory(pub)
+list(APPEND EXTRA_LIBS publisher)
 
 add_executable(My_test_site main.cpp)
 target_link_libraries (My_test_site ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${EXTRA_LIBS})
