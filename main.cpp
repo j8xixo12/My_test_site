@@ -27,10 +27,23 @@ std::mutex TMutex;
 // }
 
 int main(int argc, char *argv[]) {
-	Node pub, sub;
+	Node pub, sub, sub2, sub3;
 
 	pub.RegPublisher("\aaa");
 	sub.RegSubscriber("\aaa");
+	sub2.RegSubscriber("\aaa");
+	sub3.RegSubscriber("\aaa");
+
+	pub.Publish("Fuck You!");
+	sub.Subscribe();
+	pub.Publish("Fuck You2!");
+	sub2.Subscribe();
+	sub3.Subscribe();
+
+	std::cout << sub;
+	std::cout << sub2;
+	std::cout << sub3;
+	std::cout << sub;
 
 	return 0;
 }

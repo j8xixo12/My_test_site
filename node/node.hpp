@@ -10,6 +10,7 @@
 #include "subscriber.hpp"
 #include "publisher.hpp"
 #include "topic.hpp"
+#include <iostream>
 
 class Node {
     public:
@@ -18,6 +19,7 @@ class Node {
         void RegPublisher(const std::string _topic);
         void Subscribe();
         void Publish(const std::string _msg);
+        std::string GetMsg() { return mail_box_; }
     private:
         SubscriberPtr sub_ptr_;
         PublisherPtr pub_ptr_;
@@ -25,5 +27,7 @@ class Node {
         std::string pub_topic_;
         std::string mail_box_;
 };
+
+std::ostream & operator<< (std::ostream &ostr, Node &node);
 
 #endif // NODE_HPP_

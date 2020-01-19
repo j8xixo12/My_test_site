@@ -21,3 +21,8 @@ void Node::Publish(const std::string _msg) {
     pub_ptr_->publish();
     return;
 }
+
+std::ostream & operator<< (std::ostream &ostr, Node &node) {
+    ostr << node.GetMsg() << std::endl;
+    return ostr;
+}
