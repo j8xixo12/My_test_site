@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 # set the project name and version
-project(My_test_site)
+project(main)
 
 # specify the C++ standard
 set(CMAKE_CXX_STANDARD 11)
@@ -15,10 +15,10 @@ list(APPEND EXTRA_LIBS node)
 add_subdirectory(pub)
 list(APPEND EXTRA_LIBS publisher)
 
-add_executable(My_test_site main.cpp)
-target_link_libraries (My_test_site ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${EXTRA_LIBS})
+add_executable(main main.cpp)
+target_link_libraries (main ${CMAKE_THREAD_LIBS_INIT} ${Boost_LIBRARIES} ${EXTRA_LIBS})
 
-target_include_directories(My_test_site PUBLIC
+target_include_directories(main PUBLIC
                            "${PROJECT_SOURCE_DIR}/include"
                            "${PROJECT_SOURCE_DIR}/pub"
                            "${PROJECT_SOURCE_DIR}/sub"
