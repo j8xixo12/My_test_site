@@ -8,6 +8,7 @@
 #define TOPIC_HPP_
 
 #include <map>
+#include <list>
 #include "publisher.hpp"
 #include "subscriber.hpp"
 #include <boost/shared_ptr.hpp>
@@ -18,6 +19,7 @@ class Subscriber;
 class Publisher;
 typedef boost::shared_ptr<Publisher> PublisherPtr;
 typedef boost::shared_ptr<Subscriber> SubscriberPtr;
+typedef std::list<SubscriberPtr> SubscriberPtrList;
 
 class Topic : public Singleton<Topic> {
     public:
@@ -27,15 +29,27 @@ class Topic : public Singleton<Topic> {
             return pub;
         }
         SubscriberPtr RegistSubscriber(std::string _topic) {
+            auto it = Subscriber_Map.find(_topic);
             SubscriberPtr sub = boost::make_shared<Subscriber>(_topic);
-            Subscriber_Map.insert(std::pair<std::string,SubscriberPtr>(_topic, sub));
+            if (it != Subscriber_Map.end()) {
+                it->second->push_back(sub);
+            } else { 
+                SubscriberPtrList *ListPtr = new SubscriberPtrList;
+                ListPtr->push_back(sub);
+                Subscriber_Map.insert(std::pair<std::string,SubscriberPtrList*>(_topic, ListPtr));
+            }
+            // Subscriber_Map.insert(std::pair<std::string,SubscriberPtr>(_topic, sub));
             return sub;
         }
 
         bool notify(const std::string _topic) {
             auto sub_it = Subscriber_Map.find(_topic);
             auto pub_it = Publisher_Map.find(_topic);
-            sub_it->second->update(pub_it->second->GetMsg());
+            auto list_it = sub_it->second;
+            for (auto &&i : *list_it) {
+                i->update(pub_it->second->GetMsg());
+            }
+            // sub_it->second->update(pub_it->second->GetMsg());
             return true;
         }
         
@@ -43,7 +57,7 @@ class Topic : public Singleton<Topic> {
         Topic() {};
         ~Topic() {};
         std::map<std::string, PublisherPtr> Publisher_Map;
-        std::map<std::string, SubscriberPtr> Subscriber_Map;
+        std::map<std::string, SubscriberPtrList*> Subscriber_Map;
 
     friend class Singleton<Topic>;
 };
