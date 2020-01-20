@@ -12,10 +12,6 @@ void Node::RegPublisher(const std::string _topic) {
     return;
 }
 
-void Node::Subscribe() {
-    mail_box_ = sub_ptr_->GetMsg();
-}
-
 void Node::Publish(const std::string _msg) {
     pub_ptr_->SetMsg(_msg);
     pub_ptr_->publish();

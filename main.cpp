@@ -35,15 +35,13 @@ int main(int argc, char *argv[]) {
 	sub3.RegSubscriber("\aaa");
 
 	pub.Publish("Fuck You!");
-	sub.Subscribe();
-	sub2.Subscribe();
-	sub3.Subscribe();
+
 
 	std::cout << sub;
 	std::cout << sub2;
 	std::cout << sub3;
 	pub.Publish("Fuck You2!");
-	sub.Subscribe();
+
 	std::cout << sub;
 
 	return 0;

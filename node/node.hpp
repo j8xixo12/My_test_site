@@ -17,15 +17,13 @@ class Node {
         Node(): sub_ptr_(nullptr), pub_ptr_(nullptr) {};
         void RegSubscriber(const std::string _topic);
         void RegPublisher(const std::string _topic);
-        void Subscribe();
         void Publish(const std::string _msg);
-        std::string GetMsg() { return mail_box_; }
+        std::string GetMsg() { return sub_ptr_->GetMsg(); }
     private:
         SubscriberPtr sub_ptr_;
         PublisherPtr pub_ptr_;
         std::string sub_topic_;
         std::string pub_topic_;
-        std::string mail_box_;
 };
 
 std::ostream & operator<< (std::ostream &ostr, Node &node);
