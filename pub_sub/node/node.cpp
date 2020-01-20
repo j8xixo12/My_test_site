@@ -19,6 +19,6 @@ void Node::Publish(const std::string _msg) {
 }
 
 std::ostream & operator<< (std::ostream &ostr, Node &node) {
-    ostr << node.GetMsg() << std::endl;
+    ostr << node.GetName() << " Msg : " <<node.GetMsg() << std::endl;
     return ostr;
 }
