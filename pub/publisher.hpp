@@ -14,6 +14,7 @@
 class Publisher : public boost::enable_shared_from_this<Publisher> {
     public:
         Publisher(std::string _topic) : publish_succeeded_(false) { this->topic_ = _topic; };
+        ~Publisher() {};
         void publish();
         std::string GetMsg() { return this->message_; }
         void SetMsg(std::string _msg) { this->message_ = _msg; }

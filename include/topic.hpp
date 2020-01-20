@@ -9,10 +9,11 @@
 
 #include <map>
 #include <list>
-#include "publisher.hpp"
-#include "subscriber.hpp"
+#include <iostream>
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
+#include "publisher.hpp"
+#include "subscriber.hpp"
 #include "singleton.hpp"
 
 class Subscriber;
@@ -54,8 +55,11 @@ class Topic : public Singleton<Topic> {
         }
         
     private:
-        Topic() {};
-        ~Topic() {};
+        Topic() {}
+        ~Topic() {
+            Publisher_Map.clear();
+            Subscriber_Map.clear();
+        };
         std::map<std::string, PublisherPtr> Publisher_Map;
         std::map<std::string, SubscriberPtrList*> Subscriber_Map;
 
