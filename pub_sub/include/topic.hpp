@@ -10,6 +10,7 @@
 #include <map>
 #include <list>
 #include <iostream>
+#include <mutex>
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
 #include "publisher.hpp"
@@ -26,12 +27,17 @@ class Topic : public Singleton<Topic> {
     public:
         PublisherPtr RegistPublisher(std::string _topic) {
             PublisherPtr pub = boost::make_shared<Publisher>(_topic);
+
+            std::lock_guard<std::mutex> lock(topic_lock_);
             Publisher_Map.insert(std::pair<std::string,PublisherPtr>(_topic, pub));
             return pub;
         }
         SubscriberPtr RegistSubscriber(std::string _topic) {
+            std::lock_guard<std::mutex> lock(topic_lock_);
+
             auto it = Subscriber_Map.find(_topic);
             SubscriberPtr sub = boost::make_shared<Subscriber>(_topic);
+            
             if (it != Subscriber_Map.end()) {
                 it->second->push_back(sub);
             } else { 
@@ -44,9 +50,12 @@ class Topic : public Singleton<Topic> {
         }
 
         bool notify(const std::string _topic) {
+            std::lock_guard<std::mutex> lock(topic_lock_);
+            
             auto sub_it = Subscriber_Map.find(_topic);
             auto pub_it = Publisher_Map.find(_topic);
             auto list_it = sub_it->second;
+
             for (auto &&i : *list_it) {
                 i->update(pub_it->second->GetMsg());
             }
@@ -62,6 +71,8 @@ class Topic : public Singleton<Topic> {
         };
         std::map<std::string, PublisherPtr> Publisher_Map;
         std::map<std::string, SubscriberPtrList*> Subscriber_Map;
+
+        std::mutex topic_lock_;
 
     friend class Singleton<Topic>;
 };
