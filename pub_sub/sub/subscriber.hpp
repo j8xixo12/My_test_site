@@ -10,7 +10,6 @@
 #include <vector>
 #include <boost/shared_ptr.hpp>
 #include <boost/enable_shared_from_this.hpp>
-
 class Subscriber : public boost::enable_shared_from_this<Subscriber> {
     public:
         Subscriber(std::string _topic) { this->topic_ = _topic; }

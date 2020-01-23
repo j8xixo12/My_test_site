@@ -13,15 +13,8 @@
 #include <mutex>
 #include <boost/shared_ptr.hpp>
 #include <boost/make_shared.hpp>
-#include "publisher.hpp"
-#include "subscriber.hpp"
+#include "typedef.hpp"
 #include "singleton.hpp"
-
-class Subscriber;
-class Publisher;
-typedef boost::shared_ptr<Publisher> PublisherPtr;
-typedef boost::shared_ptr<Subscriber> SubscriberPtr;
-typedef std::list<SubscriberPtr> SubscriberPtrList;
 
 class Topic : public Singleton<Topic> {
     public:

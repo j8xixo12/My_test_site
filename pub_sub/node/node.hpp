@@ -7,9 +7,7 @@
 #ifndef NODE_HPP_
 #define NODE_HPP_
 
-#include "subscriber.hpp"
-#include "publisher.hpp"
-#include "topic.hpp"
+#include "typedef.hpp"
 #include <iostream>
 
 class Node {

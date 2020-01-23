@@ -1,4 +1,5 @@
 #include "node.hpp"
+#include "topic.hpp"
 
 void Node::RegSubscriber(const std::string _topic) {
     sub_ptr_ = Topic::Instance()->RegistSubscriber(_topic);
