@@ -28,6 +28,16 @@ build-Matrix:
 run-Matrix: build-Matrix
 	@./build/main
 
+build-builder:
+	@echo "Build builder folder"
+	@mkdir -p build
+	@cd build; \
+	cmake ../builder; \
+	make
+
+run-builder: build-builder
+	@./build/main
+
 run: build
 	@./build/main
 	
