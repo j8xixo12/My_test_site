@@ -4,7 +4,7 @@
 static inline int Shape_area_(Shape const * const this);
 
 void ShapeConstructor(Shape * const this, int _x, int _y) {
-    struct ShapeVtbl const vtbl = {
+    static struct ShapeVtbl const vtbl = {
             &Shape_area_
     };
 
